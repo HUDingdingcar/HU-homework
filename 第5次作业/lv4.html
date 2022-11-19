@@ -9,26 +9,26 @@
 </head>
 
 <body>
-    <textarea value="">发布留言</textarea>
+    <input class="text" type="text">
     <button>发布</button>
     <ul></ul>
     <script>
-        let text = document.querySelector("textarea");
+        let text = document.querySelector('.text');
         let but = document.querySelector("button");
         let ul = document.querySelector("ul");
         but.onclick = function () {
             let li = document.createElement('li');
-            li.innerHTML = text.value + "<button class='dlt'>删除</button>";
+            let p=document.createElement('p');
+            p.textContent=text.value;
+            let dlt=document.createElement('button');
+            dlt.textContent="删除";
+            dlt.onclick = function(){li.remove()};
+            li.append(p,dlt);
             li.style.background = "gray";
             li.style.width = "200px";
-            ul.appendChild(li);
-            let dlt = document.getElementsByClassName("dlt");
-            for (let i = 0; i < dlt.length; i++) {
-                dlt[i].onclick = function () {
-                    ul.removeChild(this.parentNode);
-                }
-            }
-        }
+            ul.append(li);
+            
+    }
     </script>
 </body>
 
