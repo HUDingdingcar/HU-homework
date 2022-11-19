@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    align-items: center;
+}
+div {
+    width: 320px;
+    margin: 10px;
+    border: 1px solid black;
+}
+.box1 {
+    height: 500px;
+    /* flex-grow、flex-shrink设置为0，该盒子不放大不缩小 */
+    flex: 0 0 auto;
+}
+.box2 {
+    height: 300px;
+    /* flex-grow设置为2，该盒子放大 */
+    flex: 2 1 auto;
+}
+.box3 {
+    height: 100px;
+    flex: 0 1 auto;
+    /*align-self给该盒子单独设置一个交叉轴对齐的方式*/
+    align-self: flex-start;
+}
+.box4 {
+    height: 600px;
+    /* flex-shrink设置为5，该盒子缩小速度比其他盒子快 */
+    flex: 0 5 auto;
+}

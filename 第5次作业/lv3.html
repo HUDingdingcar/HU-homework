@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+            #text {
+                width:50px;
+                height:50px;
+            }
+    </script>
+</head>
+<body>
+    <textarea value="">发布留言</textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        let text=document.querySelector("textarea");
+        let but=document.querySelector("button");
+        let ul=document.querySelector("ul");
+        but.onclick=function(){
+            let li=document.createElement('li');
+            li.innerHTML=text.value;
+            ul.appendChild(li);
+        }
+    </script>
+</body>
+</html>
