@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .yellow {
+            position: relative;
+            left: 0%;
+            border-radius: 50%;
+            height: 250px;
+            width: 250px;
+            margin: 50px;
+            background-color: rgb(245, 245, 141);
+        }
+
+        .blue {
+            position: relative;
+            left: 0%;
+            height: 250px;
+            width: 250px;
+            margin: 50px;
+            background-color: rgb(82, 187, 243);
+            border-radius: 50%;
+        }
+
+        .green {
+            position: relative;
+            left: 0%;
+            border-radius: 50%;
+            height: 250px;
+            width: 250px;
+            margin: 50px;
+            background-color: rgb(145, 250, 145);
+        }
+    </style>
+</head>
+<body>
+    <div class="yellow"></div>
+    <div class="blue"></div>
+    <div class="green"></div>
+    <script>
+        let div1 = document.querySelector('.yellow');
+        let div2 = document.querySelector('.blue');
+        let div3 = document.querySelector('.green');
+        let step=(div)=>{
+            return new Promise((reslove)=>{
+                let timer = setInterval(() => {
+                div.style.left = div.offsetLeft + 10 + 'px';
+                if (div.offsetLeft > 600) {
+                    clearInterval(timer);
+                }
+            }, 50)
+            })
+        }
+        async function move(){
+            let a=await new Promise((reslove,reject)=>{
+                let timer1 = setInterval(() => {
+                div1.style.left = div1.offsetLeft + 10 + 'px';
+                if (div1.offsetLeft > 600) {
+                    clearInterval(timer1);
+                    reslove();
+                }
+            }, 50)
+            })
+            let b=await new Promise((reslove,reject)=>{
+                let timer2 = setInterval(() => {
+                div2.style.left = div2.offsetLeft + 10 + 'px';
+                if (div2.offsetLeft > 600) {
+                    clearInterval(timer2);
+                    reslove();
+                }
+            }, 50)
+            })
+            let c=await new Promise((reslove,reject)=>{
+                let timer3 = setInterval(() => {
+                div3.style.left = div3.offsetLeft + 10 + 'px';
+                if (div3.offsetLeft > 600) {
+                    clearInterval(timer3);
+                    reslove();
+                }
+            }, 50)
+            })
+        }
+        move();
+    </script>
+</body>
+</html>
