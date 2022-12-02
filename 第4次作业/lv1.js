@@ -15,7 +15,7 @@ function Sumto(n)
     {
        return i+Sumto(n-1);
     }
-    if(i=1)
+    if(i==1)
     {
         return i;
     }
