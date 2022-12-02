@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            transition: 1s;
+        }
+
+        div:nth-of-type(1) {
+            background-color: red;
+        }
+
+        div:nth-of-type(2) {
+            background-color: yellow;
+        }
+
+        div:nth-of-type(3) {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        const balls = document.querySelectorAll('div')
+
+        const way1 = () => {
+            setTimeout(() => {
+                balls[0].style.transform = 'translateX(256px)'
+                setTimeout(() => {
+                    balls[1].style.transform = 'translateX(256px)'
+                    setTimeout(() => {
+                        balls[2].style.transform = 'translateX(256px)'
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+        const way2 = () => {
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    balls[0].style.transform = 'translateX(256px)'
+                    resolve()
+                }, 1000);
+            }).then(() => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        balls[1].style.transform = 'translateX(256px)'
+                        resolve()
+                    }, 1000);
+                })
+            }).then(() => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        balls[2].style.transform = 'translateX(256px)'
+                        resolve()
+                    }, 1000);
+                })
+            })
+        }
+
+        const way3 = async () => {
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            })
+            balls[0].style.transform = 'translateX(256px)'
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            })
+            balls[1].style.transform = 'translateX(256px)'
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            })
+            balls[2].style.transform = 'translateX(256px)'
+        }
+
+        way1()
+        way2()
+        way3()
+    </script>
+</body>
+
+</html>

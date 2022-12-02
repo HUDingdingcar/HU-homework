@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <style>
+        #root {
+            display: flex;
+            flex-direction: column;
+            width: 640px;
+            height: 360px;
+            margin: auto;
+        }
+
+        #content {
+            border: 1px solid #000;
+            border-radius: 4px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            height: 24px;
+            margin: 2px 0;
+        }
+
+        li p {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <ul id="content"></ul>
+        <div id="footer">
+            <input title="scan" class="scan" type="text">
+            <input class="send" type="button" value="发送">
+            <input type="button" class="add" value="添加">
+
+            <input type="radio" name="color" title="red">
+            <span>红</span>
+            <input type="radio" name="color" title="yellow">
+            <span>黄</span>
+            <input type="radio" name="color" title="green">
+            <span>绿</span>
+            <input type="radio" name="color" title="blue">
+            <span>蓝</span>
+        </div>
+    </div>
+
+    <script>
+        const content = document.getElementById('content')
+        const scan = document.querySelector('.scan');
+        const send = document.querySelector('.send');
+        const add = document.querySelector('.add');
+        const select = document.querySelectorAll('input[type=radio]');
+
+        send.onclick = () => {
+            //输入的内容
+            const msg = scan.value;
+            //输入为空函数结束
+            if (!msg) return
+
+            //标签默认值
+            let color = '#000';
+            for (let i = 0; i < select.length; i++)
+                //如果该标签选中，color设置成标签的title的值
+                if (select[i].checked) color = select[i].title
+
+            const li = document.createElement('li');
+            const p = document.createElement('p')
+            const btn = document.createElement('button')
+
+            p.textContent = msg;
+            p.style.color = color
+            btn.textContent = '删除'
+            //点击删除按钮该节点移除
+            btn.onclick = () => li.remove()
+
+            li.append(p, btn)
+            content.append(li)
+
+            scan.value = ''
+        }
+
+        //以下方法结合类相关知识
+        class Msg {
+            li = document.createElement('li');
+            p = document.createElement('p')
+            btn = document.createElement('button')
+            constructor(msg) {
+                this.p.textContent = msg;
+                this.btn.textContent = '删除'
+                this.btn.onclick = () => this.li.remove()
+            }
+            setColor(color) {
+                this.p.style.color = color
+            }
+            render(container) {
+                this.li.append(this.p, this.btn)
+                container.append(this.li)
+            }
+        }
+
+        add.addEventListener('click', () => {
+            const msg = scan.value;
+            if (!msg) return
+            const msgNode = new Msg(msg)
+            for (let i = 0; i < select.length; i++)
+                if (select[i].checked) msgNode.setColor(select[i].title)
+            msgNode.render(content)
+            scan.value = ''
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>point</button>
+    <script>
+        document.querySelector('button').addEventListener('click', fun())
+        
+        async function fun() {
+            let token='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsInVzZXJuYW1lIjoiaHUiLCJhdmF0YXIiOiIiLCJpYXQiOjE2Njk5NTM1NzksImV4cCI6MTY3MjU0NTU3OX0.BjRKwV4pH1pe1AeKPTNOv-dFbbzuyN3No0UiprV_A-Y'
+            let rel = await fetch('https://taskapi.chovrio.club/chatroom', {
+                headers: {
+                  
+                  Authorization:token
+                }                    
+                })
+            
+            let rel2 = rel.text();
+            console.log(rel2);
+            }
+</script>
+</body>
+</html>
