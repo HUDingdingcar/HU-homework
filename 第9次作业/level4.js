@@ -1,20 +1,55 @@
-function double(a) {
-    return a * a
-}
-function fn(arr, func) {
-    let len = arr.length
-    for (let i = 0; i < len; i++) {
-        arr[i] = func(arr[i])
+Array.prototype.myMap = function (fn) {
+    let new_arr = []
+    for (let i = 0; i < this.length; i++) {
+        new_arr[i] = fn(this[i])
     }
-    return arr
+    return new_arr
 }
-//每项平方
-console.log(fn([1,2,3], double))
-console.log([1,2,3].map(double))
-//筛选出大于1的数
-console.log([1,2,3].filter(b=>b>1))
-//求和
-let sum=[1,2,3].reduce(function(pre,cur){
-    return pre+cur
-},)
-console.log(sum)
+let fn1 = function (a) {
+    return a * a
+
+}
+console.log([1, 2, 3].myMap(fn1))
+
+Array.prototype.myReduce = function (fn, a) {
+    let res
+    if (!a) {
+        res = this[0]
+        for (let i = 1; i < this.length; i++) {
+            res = fn(res, this[i])
+        }
+        return res
+    } else {
+        res = a
+        for (let i = 0; i < this.length; i++) {
+            res = fn(res, this[i])
+        }
+        return res
+    }
+}
+let fn2 = function (a, b) {
+    return a + b
+}
+console.log([1, 2, 3].myReduce(fn2))
+console.log([1, 2, 3].myReduce(fn2, 4))
+
+Array.prototype.myFilter = function (fn) {
+    let new_arr = []
+    let j=0
+    for (let i = 0; i < this.length; i++) {
+        if (fn(this[i])==this[i]) {
+            new_arr[j] = fn(this[i])
+            j++
+        }
+    }
+    return new_arr
+}
+let fn3 = function (a) {
+    if (a > 6) {
+        return a
+    }else{
+        return false
+    }
+
+}
+console.log([1, 2, 3, 6,7, 8].myFilter(fn3))
