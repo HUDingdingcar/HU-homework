@@ -17,11 +17,3 @@ module.exports = {
     my_axios
 }
 
-my_axios({ method: 'post', url: '......', data: {
-        name: 'HU'
-    }
-}).then((res) => {
-    console.log(res)
-}).catch(() => {
-    console.log('err')
-})
