@@ -1,0 +1,8 @@
+{
+    "name": "abababa-makabaka",
+    "version": "1.0.0",
+    "main": "index.js",
+    "description": "封装Ajax",
+    "license": "ISC"
+
+}
