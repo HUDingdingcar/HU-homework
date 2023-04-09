@@ -1,0 +1,35 @@
+.yellow {
+    position: relative;
+    left: 0%;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    margin: 50px;
+    background-color: rgb(245, 245, 141);
+}
+
+.blue {
+    position: relative;
+    left: 0%;
+    height: 250px;
+    width: 250px;
+    margin: 50px;
+    background-color: rgb(89, 189, 243);
+    border-radius: 50%;
+}
+
+.green {
+    position: relative;
+    left: 0%;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    margin: 50px;
+    background-color: rgb(145, 250, 145);
+}
+#box{
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    background: url('../images/self.jpg');
+}
